@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breaking the Majority: Consistency, Minority Influence, and Private Conversion | BNN LIVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #14213D;
+    --green: #2E7D32;
+    --red: #C62828;
+    --grey: #E4E2DC;
+    --card: #FFFFFF;
+    --ink: #1B1B1B;
+    --muted: #5B5B5B;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Source Sans 3", Arial, sans-serif;
+    font-size: 18px;
+    background: var(--grey);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+  }
+  h1, h2, h3 {
+    font-family: "Oswald", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    line-height: 1.05;
+    margin: 0;
+  }
+  a { color: var(--navy); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header: white, logo mark only */
+  header.top { background: #fff; position: sticky; top: 0; z-index: 10; }
+  .masthead { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; gap: 16px; flex-wrap: wrap; }
+  .logo-mark { display: block; width: 72px; height: 72px; }
+  .logo-mark svg { width: 100%; height: 100%; display: block; }
+  .header-right { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .live-pill { background: var(--red); color: #fff; font-family: "Oswald", sans-serif; font-weight: 500; font-size: 14px; padding: 4px 10px; letter-spacing: 1.5px; display: inline-flex; align-items: center; }
+  nav.menu { display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.menu a { color: var(--navy); text-decoration: none; font-family: "Oswald", sans-serif; font-weight: 500; font-size: 16px; text-transform: uppercase; letter-spacing: .5px; }
+  nav.menu a:hover { color: var(--red); }
+
+  /* Ticker */
+  .ticker { background: var(--red); color: #fff; overflow: hidden; white-space: nowrap; }
+  .ticker-inner { display: inline-block; padding: 8px 0; animation: slide 38s linear infinite; font-family: "Oswald", sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3px; }
+  .ticker-inner span { margin-right: 48px; }
+  @keyframes slide { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+  .ticker-label { background: var(--navy); color: #fff; padding: 8px 14px; font-family: "Oswald", sans-serif; font-weight: 700; letter-spacing: 1px; position: relative; z-index: 1; }
+
+  /* Pulse dot */
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #fff; margin-right: 8px; animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0% { opacity: 1; } 50% { opacity: .2; } 100% { opacity: 1; } }
+
+  /* Hero */
+  .hero { background: #fff; }
+  .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; padding: 44px 0; align-items: center; }
+  .tag { display: inline-block; background: var(--red); color: #fff; font-family: "Oswald", sans-serif; font-weight: 500; font-size: 14px; padding: 4px 10px; letter-spacing: 1.5px; margin-bottom: 14px; }
+  .hero h1 { font-size: 64px; color: var(--navy); margin-bottom: 16px; }
+  .hero p.sub { font-size: 20px; color: var(--muted); margin: 0 0 24px; max-width: 620px; }
+  .btn { display: inline-block; background: var(--navy); color: #fff; padding: 12px 22px; text-decoration: none; font-family: "Oswald", sans-serif; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; border: 0; cursor: pointer; font-size: 16px; }
+  .btn:hover { background: var(--red); }
+  .btn.alt { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 2px var(--navy); }
+  .btn.alt:hover { background: var(--navy); color: #fff; }
+  .btn.red { background: var(--red); }
+  .btn.red:hover { background: #a31f1f; }
+  .video-card { background: var(--navy); color: #fff; min-height: 260px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 24px; text-decoration: none; }
+  .video-card .play { width: 74px; height: 74px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 30px; margin-bottom: 16px; }
+  .video-card h3 { font-size: 30px; margin-bottom: 6px; }
+  .video-card small { color: #C9D2E6; }
+
+  /* Chips */
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 0 28px; }
+  .chip { background: #fff; color: var(--navy); text-decoration: none; padding: 6px 14px; font-family: "Oswald", sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: .5px; }
+  .chip:hover { background: var(--navy); color: #fff; }
+
+  /* Sections */
+  section.block { padding: 52px 0; }
+  section.block h2 { font-size: 46px; color: var(--navy); margin-bottom: 8px; }
+  .kicker { color: var(--red); font-family: "Oswald", sans-serif; font-weight: 500; letter-spacing: 2px; font-size: 15px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .section-head { margin-bottom: 26px; }
+
+  /* Main grid with sidebar */
+  .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; align-items: start; }
+  .stories { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { background: var(--card); padding: 22px; }
+  .card .meta { display: flex; justify-content: space-between; font-family: "Oswald", sans-serif; font-size: 14px; letter-spacing: 1px; }
+  .card .cat { color: var(--red); }
+  .card .time { color: var(--muted); }
+  .card h3 { font-size: 28px; color: var(--navy); margin: 8px 0 10px; }
+  .card p { margin: 0; color: var(--muted); font-size: 17px; }
+  details.more { margin-top: 12px; }
+  details.more summary { cursor: pointer; color: var(--navy); font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .5px; font-size: 15px; list-style: none; }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::after { content: " +"; color: var(--red); }
+  details.more[open] summary::after { content: " −"; }
+  details.more p { margin-top: 10px; color: var(--ink); font-size: 17px; }
+
+  /* Sidebar */
+  .side { display: flex; flex-direction: column; gap: 18px; }
+  .live-box { background: var(--navy); color: #fff; padding: 24px; }
+  .live-box .live-tag { display: inline-flex; align-items: center; background: var(--red); padding: 4px 10px; font-family: "Oswald", sans-serif; font-size: 14px; letter-spacing: 1.5px; margin-bottom: 12px; }
+  .live-box h3 { font-size: 28px; margin-bottom: 8px; }
+  .live-box p { color: #C9D2E6; margin: 0 0 16px; font-size: 17px; }
+  .side-box { background: var(--card); padding: 22px; }
+  .side-box h3 { font-size: 24px; color: var(--navy); margin-bottom: 12px; }
+  .most-read { list-style: none; margin: 0; padding: 0; counter-reset: mr; }
+  .most-read li { counter-increment: mr; padding: 8px 0; font-size: 17px; }
+  .most-read li::before { content: counter(mr); font-family: "Oswald", sans-serif; font-weight: 700; color: var(--red); font-size: 22px; margin-right: 10px; }
+  .most-read a { text-decoration: none; color: var(--ink); font-weight: 600; }
+  .most-read a:hover { color: var(--red); }
+  .fact p { margin: 0; color: var(--ink); font-size: 17px; }
+  .fact .label { color: var(--red); font-family: "Oswald", sans-serif; font-size: 14px; letter-spacing: 1.5px; margin-bottom: 6px; display: block; }
+
+  /* Two-column text */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .two p { font-size: 19px; }
+  .pullquote { font-family: "Oswald", sans-serif; font-size: 34px; font-weight: 500; color: var(--navy); line-height: 1.2; text-transform: none; }
+  .pullquote::before { content: "\201C"; color: var(--red); font-size: 56px; line-height: 0; vertical-align: -20px; margin-right: 4px; }
+
+  /* Numbers */
+  .numbers { background: var(--navy); color: #fff; padding: 52px 0; }
+  .numbers h2 { color: #fff; }
+  .numbers .kicker { color: #FF8A80; }
+  .bar-row { margin: 18px 0; }
+  .bar-label { display: flex; justify-content: space-between; font-family: "Oswald", sans-serif; font-weight: 500; letter-spacing: .5px; margin-bottom: 6px; font-size: 18px; }
+  .bar-track { background: rgba(255,255,255,0.12); height: 36px; position: relative; }
+  .bar-fill { height: 100%; background: #7BD389; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-family: "Oswald", sans-serif; font-weight: 700; color: var(--navy); font-size: 20px; min-width: 2px; }
+  .bar-fill.red { background: var(--red); color: #fff; }
+  .numbers .note { color: #C9D2E6; font-size: 15px; margin-top: 18px; }
+
+  /* Debate */
+  .debate-box { background: var(--card); padding: 28px; }
+  .debate-box h3 { color: var(--navy); font-size: 26px; margin-bottom: 8px; }
+  .debate-box p { font-size: 18px; margin: 0; }
+  .question { background: #FFF4D6; padding: 20px; margin-top: 22px; font-size: 18px; }
+
+  /* Poll and quiz */
+  .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .game { background: var(--card); padding: 28px; }
+  .game h3 { font-size: 36px; color: var(--navy); margin-bottom: 8px; }
+  .game > p { color: var(--muted); margin: 0 0 18px; font-size: 18px; }
+  fieldset { border: 0; margin: 0 0 18px; padding: 0; }
+  legend { font-family: "Oswald", sans-serif; letter-spacing: .3px; font-size: 18px; color: var(--ink); margin-bottom: 10px; padding: 0; }
+  .opt { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #F1EFEA; margin-bottom: 8px; cursor: pointer; font-size: 17px; }
+  .opt:hover { background: #E6E3DB; }
+  .opt input { accent-color: var(--red); width: 18px; height: 18px; margin: 0; }
+  .msg { color: var(--red); font-weight: 600; min-height: 20px; font-size: 15px; }
+  .result { background: #EAF4EA; padding: 18px; margin-top: 14px; }
+  .result p { margin: 0; font-size: 17px; }
+  .fb { font-size: 16px; font-weight: 600; margin: 4px 0 12px 0; }
+  .fb.good { color: var(--green); }
+  .fb.bad { color: var(--red); }
+  .score { font-family: "Oswald", sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); margin-top: 8px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  [hidden] { display: none !important; }
+
+  /* FAQ */
+  details.faq { background: var(--card); margin-bottom: 10px; padding: 16px 20px; }
+  details.faq summary { cursor: pointer; color: var(--navy); font-family: "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .5px; font-size: 19px; list-style: none; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after { content: " +"; color: var(--red); }
+  details.faq[open] summary::after { content: " −"; }
+  details.faq p { margin: 10px 0 0; color: var(--muted); font-size: 18px; }
+
+  /* Watch */
+  .watch-box { background: var(--navy); color: #fff; padding: 40px; text-align: center; }
+  .watch-box p { color: #C9D2E6; font-size: 18px; }
+
+  /* Team */
+  .team { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .member { background: var(--card); padding: 20px; text-align: center; }
+  .member .init { width: 58px; height: 58px; border-radius: 50%; background: var(--navy); color: #fff; font-family: "Oswald", sans-serif; font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+  .member b { display: block; color: var(--navy); font-size: 17px; }
+
+  .refs p { font-size: 17px; padding-left: 26px; text-indent: -26px; margin: 0 0 14px; color: var(--ink); }
+
+  footer { background: var(--navy); color: #C9D2E6; padding: 30px 0; font-size: 16px; margin-top: 40px; }
+  footer strong { color: #fff; font-family: "Oswald", sans-serif; letter-spacing: 1px; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .two, .main-grid, .game-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 46px; }
+    .team { grid-template-columns: 1fr 1fr; }
+    section.block h2 { font-size: 36px; }
+    .stories { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .team { grid-template-columns: 1fr; }
+    .logo-mark { width: 60px; height: 60px; }
+  }
+  .brand { display: flex; flex-direction: column; gap: 6px; max-width: 300px;}
+  .brand-tag { margin: 0; font-family: "Source Sans 3", sans-serif; font-size: 13px; line-height: 1.3; font-weight: 600; color: var(--navy);}
+
+  .skip { position: absolute; left: -9999px; top: 0; }
+  .skip:focus { left: 12px; top: 12px; background: #fff; color: var(--navy); padding: 8px 12px; z-index: 20; font-weight: 700; }
+  :focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+  .words { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .word { background: #fff; padding: 18px; }
+  .word b { display: block; font-family: "Oswald", sans-serif; font-weight: 700; color: var(--navy); font-size: 20px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 6px; }
+  .word p { margin: 0; font-size: 17px; color: var(--ink); }
+  @media (max-width: 900px) { .words { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .ticker-inner, .dot { animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+<script id="wix-site-script" src="https://manage.wix.com/_api/headless-business-setup/v1/headless-business/site-script.js" data-client-id="896407aa-a25e-4da3-965d-351929e2c081" async></script></head>
+<body>
+<a class="skip" href="#home">Skip to the start</a>
+<header class="top">
+  <div class="wrap masthead">
+    <div class="brand">
+    <a class="logo-mark" href="#home" aria-label="BNN LIVE home">
+      <svg viewBox="20 20 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BNN LIVE">
+        <rect x="20" y="20" width="220" height="220" rx="28" ry="28" fill="#14213D"/>
+        <path d="M20 168 H240 V212 A28 28 0 0 1 212 240 H48 A28 28 0 0 1 20 212 Z" fill="#C62828"/>
+        <circle cx="168" cy="50" r="5" fill="#2E7D32"/>
+        <path d="M175.07 42.93 A10 10 0 0 1 175.07 57.07" fill="none" stroke="#2E7D32" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M180.73 37.27 A18 18 0 0 1 180.73 62.73" fill="none" stroke="#2E7D32" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M186.38 31.62 A26 26 0 0 1 186.38 68.38" fill="none" stroke="#2E7D32" stroke-width="4.5" stroke-linecap="round"/>
+        <text x="130" y="150" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-weight="700" font-size="92" fill="#FFFFFF">BNN</text>
+        <text x="130" y="214" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-weight="700" font-size="30" fill="#FFFFFF" letter-spacing="6">LIVE</text>
+      </svg>
+    </a>
+    <p class="brand-tag">Breaking the Majority: Consistency, Minority Influence, and Private Conversion</p>
+    </div>
+    <div class="header-right">
+      <span class="live-pill"><span class="dot"></span>LIVE</span>
+      <nav class="menu">
+        <a href="#study">The Study</a>
+        <a href="#numbers">The Numbers</a>
+        <a href="#debate">Debate</a>
+        <a href="#quiz">Poll and Quiz</a>
+        <a href="#faq">Explainers</a>
+        <a href="#home">Watch</a>
+        <a href="#team">Team</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" role="region" aria-label="Quick facts">
+  <div style="display:flex; align-items:center;">
+    <div class="ticker-label">QUICK FACTS</div>
+    <div class="ticker-inner" style="padding-left:24px;">
+      <span>In 1969, 172 women took part in a colour study.</span>
+      <span>When a steady minority kept its answer, green answers rose from about 1 in 400 to about 1 in 12.</span>
+      <span>Take the poll and quiz below, then watch the full video.</span>
+    </div>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">START HERE</span>
+      <h1>Can a small group change a whole room?</h1>
+      <p class="sub">This page is about a 1969 experiment with one simple question: if a few people keep giving the same answer, can they change what everyone else says? Here is what the researchers did, what they found, and what it might mean.</p>
+      <a class="btn alt" href="#study">Read the story</a>
+    </div>
+    <div class="video-card" style="padding:0;overflow:hidden;"><iframe src="https://www.youtube-nocookie.com/embed/wOja4dipuhk" title="Group 4 video: the 1969 minority influence study explained" width="100%" style="aspect-ratio:16/9;border:0;display:block;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+  <div class="wrap">
+    <nav class="chips" aria-label="Jump to a section">
+      <a class="chip" href="#words">Key words</a>
+      <a class="chip" href="#study">What happened</a>
+      <a class="chip" href="#top-stories">Top stories</a>
+      <a class="chip" href="#numbers">The numbers</a>
+      <a class="chip" href="#debate">Going along or changing your mind</a>
+      <a class="chip" href="#quiz">Poll and quiz</a>
+      <a class="chip" href="#faq">Questions answered</a>
+    </nav>
+  </div>
+</section>
+
+<section class="block" id="words">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Key words</span>
+      <h2>Words you will see</h2>
+      <p style="color:var(--muted); font-size:18px; margin:10px 0 0; max-width:720px;">You don't need any psychology background. These are the only special words on the page.</p>
+    </div>
+    <div class="words">
+      <div class="word"><b>Majority</b><p>The bigger group in the room.</p></div>
+      <div class="word"><b>Minority</b><p>The smaller group. In this study, it is the few people who keep giving the same answer.</p></div>
+      <div class="word"><b>Minority influence</b><p>When a small group changes what the bigger group thinks or says.</p></div>
+      <div class="word"><b>Consistent</b><p>Giving the same answer every time, instead of changing it to fit in.</p></div>
+      <div class="word"><b>Confederate</b><p>A helper who secretly works with the researchers. Everyone else thinks they are a normal participant.</p></div>
+      <div class="word"><b>Compliance</b><p>Going along with the group in public while still privately thinking the same way.</p></div>
+      <div class="word"><b>Conversion</b><p>Really changing your own mind, not just what you say out loud.</p></div>
+      <div class="word"><b>Afterimage</b><p>The colour you see when you look at a white wall after staring at a coloured picture.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="study" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">What happened</span>
+      <h2>The 1969 study, step by step</h2>
+    </div>
+    <div class="two">
+      <div>
+        <p>Before this study, most research asked how a big group pulls people into line. Solomon Asch had shown that people often went along with a group that gave an obviously wrong answer.</p>
+        <p>In 1969, Serge Moscovici flipped the question. What if the people pushing are the few, not the many? Can a small group that holds its position change the bigger group?</p>
+      </div>
+      <div>
+        <p class="pullquote">What happens when a small group keeps its answer?</p>
+        <p style="margin-top:18px;">The study had 172 women. They sat in groups of six. Four of them were real participants who did not know the setup. Two were secret helpers. Everyone looked at 36 slides that were clearly blue, though some were lighter and some darker. Each person said the colour out loud.</p>
+        <p>The room came in three versions. In the first, there were no helpers. In the second, the helpers said green on some slides and blue on others. In the third, the helpers said green on every slide.</p>
+        <p>Why does the third version matter? A helper who keeps changing their answer looks unsure. A helper who always says green looks sure of it, and that is harder for others to brush off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers" id="numbers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The numbers</span>
+      <h2>What the numbers mean</h2>
+    </div>
+    <p style="color:#E4E2DC; font-size:19px; max-width:760px; margin:0 0 10px;">Each bar shows the share of the real participants' answers that were green. A longer bar means more green answers. Most answers were still blue in every version of the room.</p>
+    <div class="bar-row">
+      <div class="bar-label"><span>No helpers (control): 0.25%, about 1 in 400</span><span>0.25%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:2.5%;"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>Helpers said green on some slides: 1.25%, about 1 in 80</span><span>1.25%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:12.5%;"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>Helpers always said green: 8.42%, about 1 in 12</span><span>8.42%</span></div>
+      <div class="bar-track"><div class="bar-fill red" style="width:84.2%;">8.42%</div></div>
+    </div>
+    <p class="note">The bars are drawn to scale. Source: Moscovici, Lage, and Naffrechoux (1969).</p>
+  </div>
+</section>
+
+<section class="block" id="top-stories">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Top stories</span>
+      <h2>The story in four cards</h2>
+    </div>
+    <div class="stories">
+      <article class="card">
+        <div class="meta"><span class="cat">THE SETUP</span></div>
+        <h3>Six people per room, two of them secret helpers</h3>
+        <p>Each room had four real participants and two helpers who had been told what to say.</p>
+        <details class="more">
+          <summary>Read more</summary>
+          <p>The real participants did not know the two helpers were working with the researchers. The helpers gave the same answer on every slide, which is what made them a steady minority.</p>
+        </details>
+      </article>
+      <article class="card">
+        <div class="meta"><span class="cat">THE NUMBERS</span></div>
+        <h3>From about 1 in 400 to about 1 in 12</h3>
+        <p>When the helpers always said green, green answers went up a lot.</p>
+        <details class="more">
+          <summary>Read more</summary>
+          <p>With no helpers, about 0.25% of answers were green, or about 1 in 400. With helpers who changed their answers, about 1.25%. With helpers who always said green, 8.42%, or about 1 in 12.</p>
+        </details>
+      </article>
+      <article class="card">
+        <div class="meta"><span class="cat">THE DEBATE</span></div>
+        <h3>Did people really change their minds?</h3>
+        <p>From the outside, going along and changing your mind can look the same.</p>
+        <details class="more">
+          <summary>Read more</summary>
+          <p>Someone can say green to fit in while still seeing blue. The researchers said a steady minority can change what people privately think, not just what they say. That is the part people still argue about.</p>
+        </details>
+      </article>
+      <article class="card">
+        <div class="meta"><span class="cat">LATER TESTS</span></div>
+        <h3>Not every later test agreed</h3>
+        <p>A 1980 study by Sorrentino, King and Leo failed to replicate the result.</p>
+        <details class="more">
+          <summary>Read more</summary>
+          <p>They found the colour shift only among participants who were highly suspicious of the study. They argued that suspicion about the study could explain the shifts.</p>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="debate">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The debate</span>
+      <h2>Going along or changing your mind?</h2>
+    </div>
+    <div class="two">
+      <div class="debate-box">
+        <h3>Compliance</h3>
+        <p>Saying what the group says to fit in, while still thinking your own way. Example: agreeing with your friends at dinner to avoid an argument, even though you disagree.</p>
+      </div>
+      <div class="debate-box">
+        <h3>Conversion</h3>
+        <p>Really changing your own view. Example: you hear the same argument from the same person, again and again, until you start to see it differently.</p>
+      </div>
+    </div>
+    <div class="two" style="margin-top:28px;">
+      <div>
+        <p>Moscovici argued that when a minority stays steady, people stop and think about its argument. Thinking it through is what can lead to a real change of mind, not just going along.</p>
+      </div>
+      <div>
+        <p><strong>Did it hold up?</strong> Not every test agreed. In 1980, Sorrentino, King and Leo failed to replicate the result, and their extra data pointed to suspicion about the study. The debate is not settled, and this page doesn't claim it is.</p>
+      </div>
+    </div>
+    <div class="question">
+      <strong>Your turn:</strong> Think of a time a few people kept saying the same thing until the group started to listen. What made them convincing: their reasons, or the fact that they never changed their answer?
+    </div>
+  </div>
+</section>
+
+<section class="block" id="quiz" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Interactive</span>
+      <h2>Vote, then test yourself</h2>
+    </div>
+    <div class="game-grid">
+
+      <div class="game">
+        <h3>Poll</h3>
+        <p>Can a small group that stays steady change a bigger group's mind?</p>
+        <form id="pollForm">
+          <fieldset>
+            <legend>Your answer</legend>
+            <label class="opt"><input type="radio" name="poll" value="Yes, most of the time"> Yes, most of the time</label>
+            <label class="opt"><input type="radio" name="poll" value="Sometimes"> Sometimes</label>
+            <label class="opt"><input type="radio" name="poll" value="Rarely"> Rarely</label>
+            <label class="opt"><input type="radio" name="poll" value="Not sure yet"> Not sure yet</label>
+          </fieldset>
+          <div class="row">
+            <button class="btn" type="submit">Submit vote</button>
+            <span class="msg" id="pollMsg" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+        <div class="result" id="pollResult" hidden>
+          <p>You picked: <strong id="pollChoice"></strong></p>
+          <p style="margin-top:8px;">In 1969, about 1 in 12 answers were green when the helpers were steady, up from about 1 in 400 with no helpers. Most answers were still blue.</p>
+          <p style="margin-top:10px;"><button class="btn alt" type="button" id="pollReset" style="font-size:14px; padding:8px 14px;">Vote again</button></p>
+        </div>
+      </div>
+
+      <div class="game">
+        <h3>Quiz</h3>
+        <p>Four questions, one answer each. Check your answers when you are done.</p>
+        <form id="quizForm">
+          <fieldset>
+            <legend>1. How many women took part in the 1969 study?</legend>
+            <label class="opt"><input type="radio" name="q1" value="36"> 36</label>
+            <label class="opt"><input type="radio" name="q1" value="172"> 172</label>
+            <label class="opt"><input type="radio" name="q1" value="24"> 24</label>
+            <label class="opt"><input type="radio" name="q1" value="6"> 6</label>
+            <div class="fb" id="q1-fb" role="status"></div>
+          </fieldset>
+          <fieldset>
+            <legend>2. How many slides did each group look at?</legend>
+            <label class="opt"><input type="radio" name="q2" value="12"> 12</label>
+            <label class="opt"><input type="radio" name="q2" value="24"> 24</label>
+            <label class="opt"><input type="radio" name="q2" value="36"> 36</label>
+            <label class="opt"><input type="radio" name="q2" value="172"> 172</label>
+            <div class="fb" id="q2-fb" role="status"></div>
+          </fieldset>
+          <fieldset>
+            <legend>3. In which version of the room did about 1 in 12 answers turn green?</legend>
+            <label class="opt"><input type="radio" name="q3" value="control"> No helpers</label>
+            <label class="opt"><input type="radio" name="q3" value="inconsistent"> Helpers changed their answers</label>
+            <label class="opt"><input type="radio" name="q3" value="consistent"> Helpers always said green</label>
+            <div class="fb" id="q3-fb" role="status"></div>
+          </fieldset>
+          <fieldset>
+            <legend>4. Which 1980 study failed to replicate the result?</legend>
+            <label class="opt"><input type="radio" name="q4" value="moscovici"> Moscovici and Personnaz</label>
+            <label class="opt"><input type="radio" name="q4" value="sorrentino"> Sorrentino, King and Leo</label>
+            <label class="opt"><input type="radio" name="q4" value="asch"> Asch</label>
+            <div class="fb" id="q4-fb" role="status"></div>
+          </fieldset>
+          <div class="row">
+            <button class="btn red" type="submit">Check answers</button>
+            <button class="btn alt" type="reset" style="font-size:14px; padding:8px 14px;">Try again</button>
+          </div>
+          <div class="score" id="quizScore" role="status"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Questions answered</span>
+      <h2>Your questions, answered simply</h2>
+    </div>
+    <details class="faq">
+      <summary>What is minority influence?</summary>
+      <p>It is when a small group changes what a bigger group thinks or says. This study tested whether a small group that keeps the same answer can do that, using a simple question about colour.</p>
+    </details>
+    <details class="faq">
+      <summary>What is a confederate?</summary>
+      <p>A helper who secretly works with the researchers. In this study, two helpers were told to say green on purpose. The real participants didn't know this, so the researchers could see how they reacted.</p>
+    </details>
+    <details class="faq">
+      <summary>Why were all the participants women?</summary>
+      <p>All 172 participants in the 1969 study were women. That makes it harder to know whether the same thing would happen with men or with mixed groups.</p>
+    </details>
+    <details class="faq">
+      <summary>What was the 1980 colour study about?</summary>
+      <p>Moscovici and Personnaz (1980) tried to measure a more private kind of change. Each participant looked at blue slides, then at a white wall, and reported the colour of the afterimage they saw there. The authors reported that a minority could shift what people saw, not just what they said. Later researchers did not always get the same result, and many doubt the claim.</p>
+    </details>
+    <details class="faq">
+      <summary>Is 8.42% the whole answer?</summary>
+      <p>No. The clearest result is the difference between steady helpers and mixed helpers. Later tests did not all agree, so treat the numbers as one piece of evidence, not the final word.</p>
+    </details>
+    <details class="faq">
+      <summary>What does this have to do with elections?</summary>
+      <p>It is an analogy, not a conclusion. A group that holds its position steadily can make others reconsider their views. The study does not tell us which side in an election is right.</p>
+    </details>
+  </div>
+</section>
+
+<section class="block" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Team</span>
+      <h2>Group 4</h2>
+    </div>
+    <div class="team">
+      <div class="member"><div class="init">AN</div><b>Advika Naagar</b></div>
+      <div class="member"><div class="init">BS</div><b>Bhawna Sharma</b></div>
+      <div class="member"><div class="init">BA</div><b>Bhumika Arora</b></div>
+      <div class="member"><div class="init">HA</div><b>Hrishikesh Agarwal</b></div>
+      <div class="member"><div class="init">SL</div><b>Suzanne Lirani</b></div>
+    </div>
+    <p style="color:var(--muted); margin-top:18px;">PSYC327 Social Psychology · Krea University, Sri City</p>
+  </div>
+</section>
+
+<section class="block" id="sources" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Sources</span>
+      <h2>References</h2>
+      <p style="color:var(--muted); font-size:18px; margin:10px 0 0; max-width:720px;">These are the sources behind the page. You don't need to read them to follow it.</p>
+    </div>
+    <div class="refs">
+      <p>Hewstone, M., Stroebe, W., &amp; Jonas, K. (Eds.). (2012). <em>An introduction to social psychology</em> (Chapter 8). BPS Blackwell.</p>
+      <p>Martin, R., &amp; Hewstone, M. (2017). Minority influence: Revisiting Moscovici's blue-green afterimage studies (Chapter 6). In J. R. Smith &amp; S. A. Haslam (Eds.), <em>Social psychology: Revisiting the classic studies</em>. SAGE Publications.</p>
+      <p>Moscovici, S., Lage, E., &amp; Naffrechoux, M. (1969). Influence of a consistent minority on the responses of a majority in a color perception task. <em>Sociometry, 32</em>(4), 365–380.</p>
+      <p>Moscovici, S., &amp; Personnaz, B. (1980). Studies in social influence: V. Minority influence and conversion behavior in a perceptual task. <em>Journal of Experimental Social Psychology, 16</em>(3), 270–282.</p>
+      <p>Sorrentino, R. M., King, G., &amp; Leo, G. (1980). The influence of the minority on perception: A note on a possible alternative explanation. <em>Journal of Experimental Social Psychology, 16</em>(3), 293–301. https://doi.org/10.1016/0022-1031(80)90072-4</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>BNN LIVE</strong> · The Blue News Network · Reporting from Sri City<br>
+    Group 4 · PSYC327 Social Psychology · Krea University, Sri City
+  </div>
+</footer>
+
+<script>
+  ['copy', 'cut', 'contextmenu', 'selectstart', 'dragstart'].forEach(function (evt) {
+    document.addEventListener(evt, function (e) { e.preventDefault(); });
+  });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'a', 'u', 's'].indexOf(k) !== -1) {
+      e.preventDefault();
+    }
+  });
+
+  (function () {
+    var pollForm = document.getElementById('pollForm');
+    var pollResult = document.getElementById('pollResult');
+    var pollChoice = document.getElementById('pollChoice');
+    var pollMsg = document.getElementById('pollMsg');
+    var saved = null;
+    try { saved = localStorage.getItem('bnnPoll'); } catch (err) { saved = null; }
+    if (saved) {
+      pollChoice.textContent = saved;
+      pollForm.hidden = true;
+      pollResult.hidden = false;
+    }
+    pollForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var picked = pollForm.querySelector('input[name="poll"]:checked');
+      if (!picked) { pollMsg.textContent = 'Pick one answer first.'; return; }
+      try { localStorage.setItem('bnnPoll', picked.value); } catch (err) {}
+      pollChoice.textContent = picked.value;
+      pollMsg.textContent = '';
+      pollForm.hidden = true;
+      pollResult.hidden = false;
+    });
+    document.getElementById('pollReset').addEventListener('click', function () {
+      try { localStorage.removeItem('bnnPoll'); } catch (err) {}
+      pollForm.reset();
+      pollForm.hidden = false;
+      pollResult.hidden = true;
+    });
+
+    var quizForm = document.getElementById('quizForm');
+    var answers = { q1: '172', q2: '36', q3: 'consistent', q4: 'sorrentino' };
+    var labels = { q1: '172', q2: '36', q3: 'the consistent minority', q4: 'Sorrentino, King and Leo' };
+    quizForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var score = 0;
+      Object.keys(answers).forEach(function (q) {
+        var picked = quizForm.querySelector('input[name="' + q + '"]:checked');
+        var fb = document.getElementById(q + '-fb');
+        if (picked && picked.value === answers[q]) {
+          score++;
+          fb.textContent = 'Correct.';
+          fb.className = 'fb good';
+        } else {
+          fb.textContent = 'The answer is ' + labels[q] + '.';
+          fb.className = 'fb bad';
+        }
+      });
+      document.getElementById('quizScore').textContent = 'You got ' + score + ' of 4.';
+    });
+    quizForm.addEventListener('reset', function () {
+      setTimeout(function () {
+        ['q1', 'q2', 'q3', 'q4'].forEach(function (q) {
+          var fb = document.getElementById(q + '-fb');
+          fb.textContent = '';
+          fb.className = 'fb';
+        });
+        document.getElementById('quizScore').textContent = '';
+      }, 0);
+    });
+  })();
+</script>
+</body>
+</html>
